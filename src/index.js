@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 
 const protocolo = process.env.PROTOCOL || "https";
 const ip = require("ip").address();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 443;
 
 app.use(cors());
 
