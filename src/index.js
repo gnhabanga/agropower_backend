@@ -31,6 +31,7 @@ app.use('/api/v1/produto', produtoRoutes);
 app.use('/api/v1/regiao', regiaoRoutes);
 
 app.get('/', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     res.send('Hello World');
 });
 
