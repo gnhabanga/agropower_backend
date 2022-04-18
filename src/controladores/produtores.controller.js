@@ -3,9 +3,11 @@ const ProducerModel = require('../models/produtor.model');
 
 // get all products list
 exports.getProdutoresList = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     ProducerModel.getAllProducers((err, produtor) => {
         console.log('localizacao actual');
         if (err)
+        
             res.send(err);
         console.log('produtores', produtor);
         res.send(produtor);
@@ -15,6 +17,7 @@ exports.getProdutoresList = (req, res) => {
 
 //get producer by name
 exports.getProducerByName = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     ProducerModel.getProducerByName(req.params.name, (err, produtor) => {
         if (err)
             res.send(err);
@@ -25,6 +28,7 @@ exports.getProducerByName = (req, res) => {
 
 //update producer by id
 exports.updateProducer = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const producerReqData = new ProducerModel(req.body);
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send(400).send({ success: false, message: 'Please fill all fields' });
@@ -39,6 +43,7 @@ exports.updateProducer = (req, res) => {
 
 //create new producer
 exports.createProducer = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const producerReqData = new ProducerModel(req.body);
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send(400).send({ success: false, message: 'Please fill all fields' });
@@ -54,6 +59,7 @@ exports.createProducer = (req, res) => {
 //delete producer
 
 exports.deleteProducer = (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     ProducerModel.deleteProducer(req.params.id, (err, produtor)=>{
         if (err)
         res.send(err);
