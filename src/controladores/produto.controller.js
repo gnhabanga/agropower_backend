@@ -2,6 +2,7 @@ const ProdutoModel = require('../models/produto.model');
 
 exports.getProdutoList = (req, res) => {
     ProdutoModel.getAllProduto((err, produto) => {
+        res.header("Access-Control-Allow-Origin", "*");
         console.log('localizacao actual');
         if (err)
             res.send(err);
@@ -14,6 +15,7 @@ exports.getProdutoList = (req, res) => {
 //create new produto
 exports.createProduto = (req, res) => {
     const produtoReqData = new ProdutoModel(req.body);
+    res.header("Access-Control-Allow-Origin", "*");
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send(400).send({ success: false, message: 'Please fill all fields' });
     } else {
@@ -28,6 +30,7 @@ exports.createProduto = (req, res) => {
 //update produto by id
 exports.updateProduto = (req, res) => {
     const produtoReqData = new ProdutoModel(req.body);
+    res.header("Access-Control-Allow-Origin", "*");
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send(400).send({ success: false, message: 'Please fill all fields' });
     } else {
@@ -43,6 +46,7 @@ exports.updateProduto = (req, res) => {
 exports.deleteProduto = (req, res) => {
     ProdutoModel.deleteProduto(req.params.id, (err, produto)=>{
         if (err)
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(err);
         res.json({success: true, message: 'Produto eliminado com sucesso'});
     });
