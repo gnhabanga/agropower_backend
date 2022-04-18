@@ -6,7 +6,7 @@ exports.getUsernameData = (req, res) => {
     UserModel.getUsernameData(req.params.username,req.params.password, (err, user) => {
         if (err)
             res.send(err);
-        console.log('unico dado', user);
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(user);
     });
 }
@@ -18,6 +18,7 @@ exports.getUsersList = (req, res) => {
         if (err)
             res.send(err);
         console.log('users', user);
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(user);
 
     })
@@ -26,6 +27,7 @@ exports.getUsersList = (req, res) => {
 //create new user
 exports.createUser = (req, res) => {
     const UserReqData = new UserModel(req.body);
+    res.header("Access-Control-Allow-Origin", "*");
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
         res.send(400).send({ success: false, message: 'Please fill all fields' });
     } else {
